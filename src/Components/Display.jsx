@@ -11,6 +11,7 @@ const Display = () => {
     handleNumber,
     handleAdd,
     handleDelete,
+    handleEdit
   } = useContext(PhoneContext);
 
   return (
@@ -23,7 +24,7 @@ const Display = () => {
           <label>Contact Number</label>
           <input type="text" value={number} onChange={handleNumber} />
         </div>
-        <button className="AddButton" onClick={handleAdd}>
+        <button className="AddButton" onClick={handleAdd} >
           Add
         </button>
       </div>
@@ -33,6 +34,7 @@ const Display = () => {
           <div key={index}>
             <p>{contact.name}</p>
             <p>{contact.number}</p>
+            <div className="Buttons">
             <button
               className="DeleteButton"
               onClick={() => handleDelete(index)}
@@ -40,7 +42,8 @@ const Display = () => {
               Delete
             </button>
             <br />
-            <button className="EditButton">Edit</button>
+            <button className="EditButton" onClick = {handleEdit}>Edit</button>
+            </div>
           </div>
         ))}
       </div>

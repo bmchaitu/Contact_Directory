@@ -13,10 +13,13 @@ export const PhoneProvider = ({ children }) => {
 
   const handleNumber = (event) => {
     setNumber(event.target.value)
-};
-
+  };
+  
   const handleAdd = () => {
     if (name && number) {
+      if(number.length !== 10){
+        return;
+      }
       setContacts([...contacts, { name, number }]);
       setName("");
       setNumber("");
@@ -26,6 +29,10 @@ export const PhoneProvider = ({ children }) => {
   const handleDelete = (index) => {
     setContacts((prevContacts) => prevContacts.filter((_, i) => i !== index));
   };
+
+  const handleEdit = () =>{
+   
+  }
   return (
     <PhoneContext.Provider
       value={{
@@ -36,6 +43,7 @@ export const PhoneProvider = ({ children }) => {
         handleNumber,
         handleAdd,
         handleDelete,
+        handleEdit
       }}
     >
       {children}
