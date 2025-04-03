@@ -7,24 +7,30 @@ export const PhoneProvider = ({ children }) => {
   const [number, setNumber] = useState("");
   const [contacts, setContacts] = useState([]);
 
-  const handleName = (name) =>{
-    setName(name)
+  const handleName = (name) => {
+    setName(name);
   };
 
   const handleNumber = (number) => {
-    setNumber(number)
+    setNumber(number);
   };
-  
-  const handleAdd = (isEdit,contactId) => {
+
+  const handleAdd = (isEdit, contactId) => {
     if (name && number) {
-      if(number.length !== 10){
+      if (number.length !== 10) {
         return;
       }
-      if(isEdit){
-        const otherContacts = contacts.filter(({id})=>  contactId !== id);
-        setContacts([...otherContacts,{name,number,id: otherContacts.length+1}])
-      }else{
-        setContacts((previousContacts) => [...previousContacts,{name,number,id:contacts.length+1}])
+      if (isEdit) {
+        const otherContacts = contacts.filter(({ id }) => contactId !== id);
+        setContacts([
+          ...otherContacts,
+          { name, number, id: otherContacts.length + 1 },
+        ]);
+      } else {
+        setContacts((previousContacts) => [
+          ...previousContacts,
+          { name, number, id: contacts.length + 1 },
+        ]);
       }
       setName("");
       setNumber("");
@@ -35,11 +41,7 @@ export const PhoneProvider = ({ children }) => {
     setContacts((prevContacts) => prevContacts.filter((_, i) => i !== index));
   };
 
-  const handleEdit = () =>{
-   
-
-    
-  }
+  const handleEdit = () => {};
   return (
     <PhoneContext.Provider
       value={{
@@ -50,12 +52,12 @@ export const PhoneProvider = ({ children }) => {
         handleNumber,
         handleAdd,
         handleDelete,
-        handleEdit
+        handleEdit,
       }}
     >
       {children}
     </PhoneContext.Provider>
-  );                
+  );
 };
 
 export default PhoneContext;

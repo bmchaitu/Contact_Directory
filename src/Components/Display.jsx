@@ -41,6 +41,7 @@ const Display = () => {
   return (
     <>
       <div className="ContactsContainer">
+      <h3>{isEdit?"UpdateContact":"AddContact"}</h3>
         <div className="AddContacts">
           <label>Contact Name</label>
           <input type="text" value={name} onChange={onNameChange} />
@@ -48,15 +49,16 @@ const Display = () => {
           <label>Contact Number</label>
           <input type="text" value={number} onChange={onNumberChange} />
         </div>
-          <input type="checkbox" 
+          {/* <input type="checkbox" 
           name="isEdit"
           id ='isEdit'
           defaultValue={isEdit}
           onChange={(event)=> setisEdit(event.target.checked)} />
           <label htmlFor="isEdit">IS EDIT</label>
-          <br/>
+          <br/> */}
           <button className="AddButton" onClick={onAdd}>
-          Add
+            {isEdit?"update":"Add"}
+
           </button>
       </div>
 
