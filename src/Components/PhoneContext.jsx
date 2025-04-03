@@ -7,20 +7,25 @@ export const PhoneProvider = ({ children }) => {
   const [number, setNumber] = useState("");
   const [contacts, setContacts] = useState([]);
 
-  const handleName = (event) =>{
-    setName(event.target.value)
+  const handleName = (name) =>{
+    setName(name)
   };
 
-  const handleNumber = (event) => {
-    setNumber(event.target.value)
+  const handleNumber = (number) => {
+    setNumber(number)
   };
   
-  const handleAdd = () => {
+  const handleAdd = (isEdit,contactId) => {
     if (name && number) {
       if(number.length !== 10){
         return;
       }
-      setContacts([...contacts, { name, number }]);
+      if(isEdit){
+        const otherContacts = contacts.filter(({id})=>  contactId !== id);
+        setContacts([...otherContacts,{name,number,id: otherContacts.length+1}])
+      }else{
+        setContacts((previousContacts) => [...previousContacts,{name,number,id:contacts.length+1}])
+      }
       setName("");
       setNumber("");
     }
